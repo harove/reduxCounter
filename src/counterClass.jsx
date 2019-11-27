@@ -8,15 +8,16 @@ class CounterClass extends Component {
         super(props);
         this.state= {
             number: 0,
+            numberAdd:1,
         }
     }
 
     handlerAdd = (event) => {
-        this.props.sumar(this.state.number);
+        this.props.sumar(this.state.numberAdd);
     }
 
     handlerSub = (event) => {
-        this.props.restar(this.state.number);
+        this.props.restar(this.state.numberAdd);
     }
 
     handlerOnChangeNumber = (event) => {
@@ -29,9 +30,9 @@ class CounterClass extends Component {
     render() { 
         return ( 
         <div> {this.props.numero}  <br />
-        <input name= "numberAdd" type="number" value= {this.state.numberAdd} onChange={this.handlerOnChangeNumber} />
-            <button onClick= {this.handlerAdd} >Add </button>
-            <button onClick= {this.handlerSub} >Sub </button>
+            <input name= "numberAdd" type="number" value= {this.state.number} onChange={this.handlerOnChangeNumber} />
+                <button onClick= {this.handlerAdd} >Add </button>
+                <button onClick= {this.handlerSub} >Sub </button>
             <input></input>
         </div>
          );
@@ -48,8 +49,8 @@ const mapDispatchToProps = (dispatch) => {
         sumar: n => dispatch(counterAdd(n)),
         restar: n => dispatch(counterSub(n)),
         changeNumberSub: event => {
-            const {value} = event.target
-
+            const {value} = event.target;
+            dispatch(counterChangeNumberSubAddActionCreator(value))
         }
     }
 }

@@ -7,7 +7,7 @@ import {COUNTER_ADD} from './const'
 
 
 const Counter = () => {
-    const store = useSelector(store => store);
+    const count = useSelector(store => store.count);
     const numeroMenos = useSelector(store => store.numberSub)
 
     const dispatch = useDispatch();
@@ -23,7 +23,7 @@ const Counter = () => {
 
     return (
         <div>
-            {store.count}
+            {count}
             <button onClick = {handlerAdd}>Add</button>
             <button onClick = {handlerSub}>Sub</button>
         </div>
